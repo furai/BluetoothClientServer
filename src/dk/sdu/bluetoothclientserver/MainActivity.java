@@ -5,16 +5,21 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
 
+	private IntentFilter myFilter = null;
+	private MyReceiever myreceiver = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		
+		myreceiver = new MyReceiever();
+		myFilter = new IntentFilter(BTClientThreaded.BT_NEW_RECV_DATA_INTENT);
 	}
 
 	@Override

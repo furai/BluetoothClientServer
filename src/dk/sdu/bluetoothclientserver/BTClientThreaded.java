@@ -1,6 +1,10 @@
 package dk.sdu.bluetoothclientserver;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -10,7 +14,8 @@ import android.content.Context;
 
 public class BTClientThreaded {
 
-	private static final UUID RFCOMM_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); 
+	private static final UUID RFCOMM_UUID = UUID
+			.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	private BluetoothAdapter adapter = null;
 	private BluetoothDevice device = null;
 	private BluetoothSocket btsocket = null;
@@ -23,9 +28,10 @@ public class BTClientThreaded {
 		this.context = context;
 		this.adapter = BluetoothAdapter.getDefaultAdapter();
 		this.device = this.adapter.getRemoteDevice(mac);
-		
+
 		try {
-			this.btsocket = device.createInsecureRfcommSocketToServiceRecord(RFCOMM_UUID);
+			this.btsocket = device
+					.createInsecureRfcommSocketToServiceRecord(RFCOMM_UUID);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,6 +45,20 @@ public class BTClientThreaded {
 		public void run() {
 			// TODO Auto-generated method stub
 			super.run();
+			InputStream inputstream = null;
+			try {
+				btsocket.connect();
+				inputstream = btsocket.getInputStream();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return;
+			}
+			
+			BufferedReader bufferedreader = new BufferedReader(new InputStreamReader (inputstream));
+			
+			
+			
 		}
 
 	}

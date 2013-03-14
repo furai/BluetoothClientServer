@@ -1,5 +1,7 @@
 package dk.sdu.bluetoothclientserver;
 
+import java.util.UUID;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -7,6 +9,7 @@ import android.content.Context;
 
 public class BTClientThreaded {
 
+	private static final UUID RFCOMM_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); 
 	private BluetoothAdapter adapter = null;
 	private BluetoothDevice device = null;
 	private BluetoothSocket btsocket = null;
@@ -19,7 +22,7 @@ public class BTClientThreaded {
 		this.context = context;
 		this.adapter = BluetoothAdapter.getDefaultAdapter();
 		this.device = this.adapter.getRemoteDevice(mac);
-		this.btsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
+		this.btsocket = device.createInsecureRfcommSocketToServiceRecord(RFCOMM_UUID);
 
 	}
 

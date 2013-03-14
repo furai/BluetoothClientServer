@@ -6,10 +6,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
 
+	private static final String TAG = "MainActivity";
+	private Boolean D = true;
+	
 	private IntentFilter myFilter = null;
 	private MyReceiever myreceiver = null;
 	
@@ -38,6 +42,7 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated method stub
 			
 			// do something with received data
+			if (D) Log.v(TAG, "Got something." + intent.getStringExtra(BTClientThreaded.BT_NEW_RECV_DATA_INTENT_EXTRA_DATA));
 		}
 		
 	}

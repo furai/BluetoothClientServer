@@ -62,21 +62,29 @@ public class BTClientThreaded {
 
 			BufferedReader bufferedreader = new BufferedReader(
 					new InputStreamReader(inputstream));
+			while (runFlag) {
+				try {
+
+					line = bufferedreader.readLine();
+					Intent i = new Intent(BT_NEW_RECV_DATA_INTENT);
+					i.putExtra(BT_NEW_RECV_DATA_INTENT_EXTRA_DATA, line);
+					context.sendBroadcast(i);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					runFlag = false;
+				}
+			}
 
 			try {
-				while (runFlag)
-					line = bufferedreader.readLine();
+				bufferedreader.close();
+				inputstream.close();
+				btsocket.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			// do something with data
-
-			Intent i = new Intent(BT_NEW_RECV_DATA_INTENT);
-			i.putExtra(BT_NEW_RECV_DATA_INTENT_EXTRA_DATA, line);
-			context.sendBroadcast(i);
-
 		}
 
 	}

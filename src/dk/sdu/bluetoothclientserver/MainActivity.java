@@ -2,6 +2,9 @@ package dk.sdu.bluetoothclientserver;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
@@ -21,5 +24,14 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	private class MyReceiever extends BroadcastReceiver {
 
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			
+			// do something with received data
+		}
+		
+	}
 }

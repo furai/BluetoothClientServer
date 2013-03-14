@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
 		
 		myreceiver = new MyReceiever();
 		myFilter = new IntentFilter(BTClientThreaded.BT_NEW_RECV_DATA_INTENT);
+		
+		registerReceiver(myreceiver, myFilter);
 	}
 
 	@Override

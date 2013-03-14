@@ -41,11 +41,15 @@ public class BTClientThreaded {
 
 	private class BtThread extends Thread {
 
+		private Boolean runFlag = true;
+
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
 			super.run();
 			InputStream inputstream = null;
+			String line = null;
+
 			try {
 				btsocket.connect();
 				inputstream = btsocket.getInputStream();
@@ -54,11 +58,20 @@ public class BTClientThreaded {
 				e.printStackTrace();
 				return;
 			}
+
+			BufferedReader bufferedreader = new BufferedReader(
+					new InputStreamReader(inputstream));
+
+			try {
+				while (runFlag)
+					line = bufferedreader.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			BufferedReader bufferedreader = new BufferedReader(new InputStreamReader (inputstream));
-			
-			
-			
+			// do something with data
+
 		}
 
 	}

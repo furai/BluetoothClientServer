@@ -19,6 +19,7 @@ public class BTClientThreaded {
 		this.context = context;
 		this.adapter = BluetoothAdapter.getDefaultAdapter();
 		this.device = this.adapter.getRemoteDevice(mac);
+		this.btsocket = device.createInsecureRfcommSocketToServiceRecord(uuid);
 
 	}
 

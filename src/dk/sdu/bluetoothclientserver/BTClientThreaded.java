@@ -14,6 +14,7 @@ import android.content.Intent;
 public class BTClientThreaded {
 
 	private static final String BT_NEW_RECV_DATA_INTENT = "dk.sdu.bluetoothclientserver.BT_NEW_RECV_DATA_INTENT";
+	private static final String BT_NEW_RECV_DATA_INTENT_EXTRA_DATA = "BT_NEW_RECV_DATA_INTENT_EXTRA_DATA";
 	private static final UUID RFCOMM_UUID = UUID
 			.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	private BluetoothAdapter adapter = null;
@@ -69,11 +70,12 @@ public class BTClientThreaded {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			// do something with data
-			
+
 			Intent i = new Intent(BT_NEW_RECV_DATA_INTENT);
-			
+			i.putExtra(BT_NEW_RECV_DATA_INTENT_EXTRA_DATA, line);
+			context.sendBroadcast(i);
 
 		}
 

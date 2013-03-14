@@ -1,5 +1,6 @@
 package dk.sdu.bluetoothclientserver;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -22,7 +23,13 @@ public class BTClientThreaded {
 		this.context = context;
 		this.adapter = BluetoothAdapter.getDefaultAdapter();
 		this.device = this.adapter.getRemoteDevice(mac);
-		this.btsocket = device.createInsecureRfcommSocketToServiceRecord(RFCOMM_UUID);
+		
+		try {
+			this.btsocket = device.createInsecureRfcommSocketToServiceRecord(RFCOMM_UUID);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

@@ -1,19 +1,19 @@
 package dk.sdu.bluetoothclientserver;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.UUID;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.Intent;
 
 public class BTClientThreaded {
 
+	private static final String BT_NEW_RECV_DATA_INTENT = "dk.sdu.bluetoothclientserver";
 	private static final UUID RFCOMM_UUID = UUID
 			.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	private BluetoothAdapter adapter = null;
@@ -71,6 +71,9 @@ public class BTClientThreaded {
 			}
 			
 			// do something with data
+			
+			Intent i = new Intent(BT_NEW_RECV_DATA_INTENT);
+			
 
 		}
 
